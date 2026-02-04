@@ -15,6 +15,10 @@ import { UserVoteModule } from './user-vote/user-vote.module';
 import { LikeModule } from './like/like.module';
 import { NotificationModule } from './notification/notification.module';
 import { AvatarModule } from './avatar/avatar.module';
+import { UserModule } from './user/user.module';
+import { ShowModule } from './show/show.module';
+import { ActorModule } from './actor/actor.module';
+import { TransferModule } from './transfer/transfer.module';
 
 @Module({
   imports: [
@@ -42,6 +46,10 @@ import { AvatarModule } from './avatar/avatar.module';
     LikeModule,
     NotificationModule,
     AvatarModule,
+    UserModule,
+    ShowModule,
+    ActorModule,
+    TransferModule,
   ],
   providers: [ConfigService],
 })

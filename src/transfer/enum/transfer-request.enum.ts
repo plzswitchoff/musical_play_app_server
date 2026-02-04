@@ -1,0 +1,8 @@
+export enum TransferRequestStatus {
+  WAITING = 'WAITING',
+  SELECTED = 'SELECTED',
+  ACCEPTED = 'ACCEPTED',
+  REJECTED = 'REJECTED',
+  CANCELLED = 'CANCELLED',
+  EXPIRED = 'EXPIRED',
+}
