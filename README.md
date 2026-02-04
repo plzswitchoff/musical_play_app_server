@@ -1,100 +1,248 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+## 아바타 커뮤니티앱 만들기
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+> Inflearn, Kyo
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+> [!CAUTION]
+> 모든 파일은 개인연습 용도 외에 사용하시면 안됩니다. 저작권에 유의해주세요.
 
-## Description
+## 실행
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+1. 의존성 모듈 설치
 
-## Project setup
+프로젝트 위치에서 명령어를 실행합니다.
 
-```bash
-$ npm install
+```
+npm install
 ```
 
-## Compile and run the project
+2. 환경 변수 설정
 
-```bash
-# development
-$ npm run start
+`[YOUR_USERNAME]` 부분 추가하여 `.env` 파일을 server 폴더 루트에 추가해주세요.
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```
+PORT=3030
+DB_USERNAME=[postgres 또는 YOUR_USERNAME]
+DB_PASSWORD=postgres
+DB_DATABASE=community-db
+DB_HOST=localhost
+JWT_SECRET=SecretCommunity
+JWT_ACCESS_TOKEN_EXPIRATION=30m
 ```
 
-## Run tests
+3. 개발 환경 실행
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```
+npm run start:dev
 ```
 
-## Deployment
+<br>
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## API
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+- 각 response 타입은 강의코드의 types와 같습니다.
 
-```bash
-$ npm install -g mau
-$ mau deploy
+#### POST /auth/signup
+
+- requestBody
+
+```
+{
+    email: string
+    password: string
+}
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+#### POST /auth/signin
 
-## Resources
+- requestBody
 
-Check out a few resources that may come in handy when working with NestJS:
+```js
+{
+  email: string;
+  password: string;
+}
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- response
 
-## Support
+```js
+{
+  accessToken: string;
+}
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### GET /auth/me
 
-## Stay in touch
+- response
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```ts
+Profile;
+```
 
-## License
+#### PATCH /auth/me (editProfile)
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE)
+- requestBody
 
-wlkjekljflskdjfiwkefekfj
+```ts
+Profile;
+```
+
+- response
+
+```ts
+Profile;
+```
+
+#### GET /auth/:id (getUserProfile)
+
+- response
+
+```ts
+Profile;
+```
+
+#### GET /avatar/:item
+
+- response
+
+```ts
+string[]
+```
+
+#### POST /comments
+
+- requestBody
+
+```ts
+{
+  content: string;
+  postId: number;
+  parentCommentId?: number;
+}
+```
+
+#### DELETE /comments/:id
+
+#### POST /images
+
+- requestBody
+
+```ts
+FormData;
+```
+
+#### POST /posts
+
+- requestBody
+
+```ts
+{
+  title: string;
+  description: string;
+  imageUris: ImageUri[];
+  voteTitle?: string;
+  voteOptions?: VoteOption[];
+}
+```
+
+#### GET /posts?page=${page} (getPosts)
+
+- response
+
+```ts
+Post[]
+```
+
+#### GET /posts?my?page=${page} (getMyPosts)
+
+- response
+
+```ts
+Post[]
+```
+
+#### GET /posts/user/${id}?page=${page} (getUserPosts)
+
+- response
+
+```ts
+Post[]
+```
+
+#### GET /likes?page=${page} (getLikedPosts)
+
+- response
+
+```ts
+Post[]
+```
+
+#### GET /posts/search?query=${query}&page=${page} (getSearchPosts)
+
+- response
+
+```ts
+Post[]
+```
+
+#### GET /posts/:id
+
+- response
+
+```ts
+Post;
+```
+
+#### DELETE /posts/:id
+
+#### PATCH /posts/:id
+
+- requestBody
+
+```ts
+{
+  title: string;
+  description: string;
+  imageUris: ImageUri[];
+  voteTitle?: string;
+  voteOptions?: VoteOption[];
+}
+```
+
+- response
+
+```ts
+{
+  postId: number;
+}
+```
+
+#### POST /posts/:postId/vote/:voteOptionId
+
+- requestBody
+
+```ts
+{
+  postId: number;
+  voteOptionId: number;
+}
+```
+
+- response
+
+```ts
+{
+  postId: number;
+  voteOption: VoteOption;
+}
+```
+
+#### POST /likes/:id
+
+- response
+
+```ts
+{
+  postId: number;
+}
+```
