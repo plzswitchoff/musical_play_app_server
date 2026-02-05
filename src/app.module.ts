@@ -19,6 +19,7 @@ import { UserModule } from './user/user.module';
 import { ShowModule } from './show/show.module';
 import { ActorModule } from './actor/actor.module';
 import { TransferModule } from './transfer/transfer.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { TransferModule } from './transfer/transfer.module';
     ShowModule,
     ActorModule,
     TransferModule,
+    ChatModule,
   ],
   providers: [ConfigService],
 })
