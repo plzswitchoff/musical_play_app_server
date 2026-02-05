@@ -11,7 +11,7 @@ import {
 import { User } from './user.entity';
 
 @Entity()
-export class UserAgreement extends BaseEntity{
+export class UserAgreement extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,7 +19,7 @@ export class UserAgreement extends BaseEntity{
   userId: number;
 
   @Column()
-  type:string;
+  type: string;
 
   @Column()
   version: string;
@@ -36,6 +36,7 @@ export class UserAgreement extends BaseEntity{
   @DeleteDateColumn()
   deletedAt: Date | null;
 
-  @ManyToOne(() => User, (user) => user.userAgreements)
+  // Relations
+  @ManyToOne(() => User, (user) => user.userAgreements, { onDelete: 'CASCADE' })
   user: User;
 }

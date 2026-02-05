@@ -43,7 +43,7 @@ export class ShowSchedule extends BaseEntity {
   deletedAt: Date;
 
   @JoinColumn({ name: 'showId' })
-  @ManyToOne(() => Show, (show) => show.schedules)
+  @ManyToOne(() => Show, (show) => show.schedules, { onDelete: 'CASCADE' })
   show: Show;
 
   @OneToMany(() => ScheduleCasting, (castings) => castings.schedules)

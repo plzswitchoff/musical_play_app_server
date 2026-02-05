@@ -1,4 +1,3 @@
-import { User } from 'src/auth/user.entity';
 import { VoteOption } from 'src/vote-option/vote-option.entity';
 import { Vote } from 'src/vote/vote.entity';
 import {
@@ -8,6 +7,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { User } from '../user/entity/user.entity';
 
 @Entity()
 export class UserVote extends BaseEntity {

@@ -13,10 +13,10 @@ import {
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from 'src/auth/user.entity';
 import { GetUser } from 'src/@common/decorators/get-user.decorator';
 import { AuthService } from 'src/auth/auth.service';
 import { NotificationService } from 'src/notification/notification.service';
+import { User } from '../user/entity/user.entity';
 
 @Controller('comments')
 export class CommentController {

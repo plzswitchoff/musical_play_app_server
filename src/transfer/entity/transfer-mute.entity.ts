@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -34,11 +35,14 @@ export class TransferMute extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date | null;
 
+  @Index()
   @JoinColumn({ name: 'userId' })
-  @ManyToOne(() => User, (user) => user.transferMutes)
+  @ManyToOne(() => User, (user) => user.transferMutes, { onDelete: 'CASCADE' })
   user: User;
 
   @JoinColumn({ name: 'transferId' })
-  @ManyToOne(() => Transfer, (transfer) => transfer.mutes)
+  @ManyToOne(() => Transfer, (transfer) => transfer.mutes, {
+    onDelete: 'CASCADE',
+  })
   transfer: Transfer;
 }

@@ -14,9 +14,9 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { PostService } from './post.service';
-import { User } from 'src/auth/user.entity';
 import { GetUser } from 'src/@common/decorators/get-user.decorator';
 import { CreatePostDto } from './dto/create-post.dto';
+import { User } from '../user/entity/user.entity';
 
 @Controller('posts')
 export class PostController {

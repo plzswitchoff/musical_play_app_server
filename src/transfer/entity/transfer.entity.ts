@@ -1,9 +1,12 @@
 import {
   BaseEntity,
+  Check,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  In,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -18,9 +21,11 @@ import { User } from '../../user/entity/user.entity';
 import { TransferRequest } from './transfer-request.entity';
 import { TransferBookmark } from './transfer-bookmark.entity';
 import { TransferMute } from './transfer-mute.entity';
+import { ChatRoom } from '../../chat/entity/chat-room.entity';
 
 @Entity()
 @Unique(['scheduleId', 'seatInfo'])
+@Check('"sellingPrice" <= "originalPrice"')
 export class Transfer extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -31,12 +36,14 @@ export class Transfer extends BaseEntity {
   @Column()
   scheduleId: number;
 
+  // 좌석 정보
   @Column()
   accountId: number;
 
   @Column()
   seatGrade: string;
 
+  // 가격
   @Column()
   seatInfo: string;
 
@@ -46,6 +53,7 @@ export class Transfer extends BaseEntity {
   @Column()
   sellingPrice: number;
 
+  // 이미지
   @Column({ nullable: true })
   seatImageUrl: string;
 
@@ -58,12 +66,14 @@ export class Transfer extends BaseEntity {
   @Column()
   receiptImageOriginal: string;
 
+  // 예매 정보
   @Column()
   lastFourDigits: string;
 
   @Column()
   description: string;
 
+  @Index()
   @Column()
   status: TransferStatus;
 
@@ -76,6 +86,7 @@ export class Transfer extends BaseEntity {
   @Column()
   completedAt: Date | null;
 
+  @Index()
   @CreateDateColumn()
   createdAt: Date;
 
@@ -85,6 +96,8 @@ export class Transfer extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date | null;
 
+  // Relations
+  @Index()
   @JoinColumn({ name: 'scheduleId' })
   @ManyToOne(() => ShowSchedule, (schedule) => schedule.transfers)
   schedule: ShowSchedule;
@@ -93,6 +106,7 @@ export class Transfer extends BaseEntity {
   @ManyToOne(() => UserAccount, (account) => account.transfers)
   account: UserAccount;
 
+  @Index()
   @JoinColumn({ name: 'sellerId' })
   @ManyToOne(() => User, (user) => user.sellerTransfers)
   seller: User;
@@ -101,6 +115,7 @@ export class Transfer extends BaseEntity {
   @ManyToOne(() => User, (user) => user.currentBuyerTransfers)
   currentBuyer: User;
 
+  // Relations
   @OneToMany(() => TransferRequest, (request) => request.transfer)
   requests: TransferRequest[];
 
@@ -109,4 +124,7 @@ export class Transfer extends BaseEntity {
 
   @OneToMany(() => TransferMute, (mutes) => mutes.transfer)
   mutes: TransferMute[];
+
+  @OneToMany(() => ChatRoom, (chats) => chats.transfer)
+  chats: ChatRoom[];
 }

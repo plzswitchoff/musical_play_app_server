@@ -1,9 +1,12 @@
 import {
   BaseEntity,
+  Check,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -14,6 +17,7 @@ import { User } from './user.entity';
 
 @Entity()
 @Unique(['blockerId', 'blockedId'])
+@Check('"blockerId" != "blockedId"')
 export class UserBlock extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -33,9 +37,14 @@ export class UserBlock extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date | null;
 
-  @ManyToOne(() => User, (user) => user.blockerUsers)
+  //Relations
+  @Index()
+  @JoinColumn({ name: 'blockerId' })
+  @ManyToOne(() => User, (user) => user.blockerUsers, { onDelete: 'CASCADE' })
   blocker: User;
 
-  @ManyToOne(() => User, (user) => user.blockedUsers)
+  @Index()
+  @JoinColumn({ name: 'blockedId' })
+  @ManyToOne(() => User, (user) => user.blockedUsers, { onDelete: 'CASCADE' })
   blocked: User;
 }

@@ -14,7 +14,7 @@ import { Show } from './show.entity';
 import { Actor } from '../../actor/entity/actor.entity';
 
 @Entity()
-@Unique(['showId', 'actorId'])
+@Unique(['showId', 'actorId', 'characterName'])
 export class ShowCasting extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -37,11 +37,12 @@ export class ShowCasting extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date | null;
 
+  // Relations
   @JoinColumn({ name: 'showId' })
-  @ManyToOne(() => Show, (show) => show.castings)
+  @ManyToOne(() => Show, (show) => show.castings, { onDelete: 'CASCADE' })
   show: Show;
 
   @JoinColumn({ name: 'actorId' })
-  @ManyToOne(() => Actor, (actor) => actor.castings)
+  @ManyToOne(() => Actor, (actor) => actor.castings, { onDelete: 'CASCADE' })
   actor: Actor;
 }

@@ -10,13 +10,11 @@ import {
   Unique,
   UpdateDateColumn,
 } from 'typeorm';
-import { ShowCasting } from './show-casting.entity';
-import { Show } from './show.entity';
 import { ShowSchedule } from './show-schedule.entity';
 import { Actor } from '../../actor/entity/actor.entity';
 
 @Entity()
-@Unique(['scheduleId', 'actorId'])
+@Unique(['scheduleId', 'characterName'])
 export class ScheduleCasting extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -40,10 +38,12 @@ export class ScheduleCasting extends BaseEntity {
   deletedAt: Date;
 
   @JoinColumn({ name: 'scheduleId' })
-  @ManyToOne(() => ShowSchedule, (schedules) => schedules.castings)
+  @ManyToOne(() => ShowSchedule, (schedules) => schedules.castings, {
+    onDelete: 'CASCADE',
+  })
   schedules: ShowSchedule;
 
   @JoinColumn({ name: 'actorId' })
-  @ManyToOne(() => Actor, (actors) => actors.schedules)
+  @ManyToOne(() => Actor, (actors) => actors.schedules, { onDelete: 'CASCADE' })
   actor: Actor;
 }

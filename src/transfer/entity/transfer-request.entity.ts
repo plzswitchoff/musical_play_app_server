@@ -4,6 +4,8 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  In,
+  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -29,9 +31,11 @@ export class TransferRequest extends BaseEntity {
   @Column()
   queuePosition: number;
 
+  @Index()
   @Column()
   status: TransferRequestStatus;
 
+  // 밀리초 정밀도
   @Column()
   requestedAt: Date;
 
@@ -50,10 +54,14 @@ export class TransferRequest extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date | null;
 
+  @Index()
   @JoinColumn({ name: 'transferId' })
-  @ManyToOne(() => Transfer, (transfer) => transfer.requests)
+  @ManyToOne(() => Transfer, (transfer) => transfer.requests, {
+    onDelete: 'CASCADE',
+  })
   transfer: Transfer;
 
+  @Index()
   @JoinColumn({ name: 'requesterId' })
   @ManyToOne(() => User, (requester) => requester.transferRequests)
   requester: User;

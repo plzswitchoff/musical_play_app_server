@@ -22,6 +22,8 @@ import { Transfer } from '../../transfer/entity/transfer.entity';
 import { TransferRequest } from '../../transfer/entity/transfer-request.entity';
 import { TransferBookmark } from '../../transfer/entity/transfer-bookmark.entity';
 import { TransferMute } from '../../transfer/entity/transfer-mute.entity';
+import { ChatRoomUser } from '../../chat/entity/chat-room-user.entity';
+import { Message } from '../../chat/entity/message.entity';
 
 @Entity()
 @Unique(['email'])
@@ -107,6 +109,7 @@ export class User extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date | null;
 
+  // Relations
   @OneToMany(() => Post, (post) => post.user)
   post: Post[];
 
@@ -145,4 +148,10 @@ export class User extends BaseEntity {
 
   @OneToMany(() => TransferMute, (mute) => mute.user)
   transferMutes: TransferMute[];
+
+  @OneToMany(() => ChatRoomUser, (chatRoomUser) => chatRoomUser.user)
+  chatRoomUsers: ChatRoomUser[];
+
+  @OneToMany(() => Message, (message) => message.sender)
+  messages: Message[];
 }

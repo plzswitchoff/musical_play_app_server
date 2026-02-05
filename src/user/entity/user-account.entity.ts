@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -50,8 +51,10 @@ export class UserAccount extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date | null;
 
+  // Relations
+  @Index()
   @JoinColumn({ name: 'userId' })
-  @ManyToOne(() => User, (user) => user.userAccount)
+  @ManyToOne(() => User, (user) => user.userAccount, { onDelete: 'CASCADE' })
   user: User;
 
   @OneToMany(() => Transfer, (transfer) => transfer.account)

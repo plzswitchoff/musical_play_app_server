@@ -8,12 +8,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Post } from './post.entity';
 import { Brackets, Repository, SelectQueryBuilder } from 'typeorm';
 import { Image } from 'src/image/image.entity';
-import { User } from 'src/auth/user.entity';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Comment } from 'src/comment/comment.entity';
 import { VoteOption } from 'src/vote-option/vote-option.entity';
 import { Vote } from 'src/vote/vote.entity';
 import { UserVote } from 'src/user-vote/user-vote.entity';
+import { User } from '../user/entity/user.entity';
 
 @Injectable()
 export class PostService {

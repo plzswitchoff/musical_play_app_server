@@ -46,6 +46,7 @@ export class Show extends BaseEntity {
   @Column({ nullable: true })
   ageLimit: ShowAgeLimit | null;
 
+  // {"VIP": 170000, "R": 140000, "S": 110000, "A": 80000}
   @Column({ type: 'jsonb', nullable: true })
   seatPrice?: any | null;
 

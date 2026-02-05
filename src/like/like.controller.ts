@@ -10,7 +10,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { LikeService } from './like.service';
 import { GetUser } from 'src/@common/decorators/get-user.decorator';
-import { User } from 'src/auth/user.entity';
+import { User } from '../user/entity/user.entity';
 
 @Controller('likes')
 @UseGuards(AuthGuard())

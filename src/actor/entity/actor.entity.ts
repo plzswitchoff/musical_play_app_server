@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  Index,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -16,6 +17,7 @@ export class Actor extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Index()
   @Column()
   name: string;
 
@@ -31,6 +33,7 @@ export class Actor extends BaseEntity {
   @DeleteDateColumn()
   deletedAt: Date | null;
 
+  // Relations
   @OneToMany(() => ShowCasting, (casting) => casting.actor)
   castings: ShowCasting[];
 

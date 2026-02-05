@@ -37,7 +37,10 @@ export class TransferBookmark extends BaseEntity {
   @ManyToOne(() => User, (user) => user.transferBookmarks)
   user: User;
 
+  // Relations
   @JoinColumn({ name: 'transferId' })
-  @ManyToOne(() => Transfer, (transfer) => transfer.bookmarks)
+  @ManyToOne(() => Transfer, (transfer) => transfer.bookmarks, {
+    onDelete: 'CASCADE',
+  })
   transfer: Transfer;
 }

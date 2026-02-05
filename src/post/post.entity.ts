@@ -11,11 +11,11 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { User } from 'src/auth/user.entity';
 import { Image } from 'src/image/image.entity';
 import { Comment } from 'src/comment/comment.entity';
 import { Vote } from 'src/vote/vote.entity';
 import { Like } from 'src/like/like.entity';
+import { User } from '../user/entity/user.entity';
 
 @Entity()
 export class Post extends BaseEntity {
