@@ -74,14 +74,18 @@ export class Transfer extends BaseEntity {
   description: string;
 
   @Index()
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: TransferStatus,
+    default: TransferStatus.ACTIVE,
+  })
   status: TransferStatus;
 
-  @Column()
-  currentBuyerId: number | null;
+  @Column({ nullable: true })
+  currentBuyerId?: number | null;
 
-  @Column()
-  bumpedAt: Date | null;
+  @Column({ nullable: true })
+  bumpedAt?: Date | null;
 
   @Column()
   completedAt: Date | null;

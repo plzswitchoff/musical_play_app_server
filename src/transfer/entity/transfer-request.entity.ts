@@ -32,17 +32,21 @@ export class TransferRequest extends BaseEntity {
   queuePosition: number;
 
   @Index()
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: TransferRequestStatus,
+    default: TransferRequestStatus.ACCEPTED,
+  })
   status: TransferRequestStatus;
 
   // 밀리초 정밀도
   @Column()
   requestedAt: Date;
 
-  @Column()
+  @Column({ nullable: true })
   selectedAt: Date | null;
 
-  @Column()
+  @Column({ nullable: true })
   respondedAt: Date | null;
 
   @CreateDateColumn()
