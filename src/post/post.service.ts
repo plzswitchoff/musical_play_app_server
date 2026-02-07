@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Post } from './post.entity';
+import { Post } from './entity/post.entity';
 import { Brackets, Repository, SelectQueryBuilder } from 'typeorm';
 import { Image } from 'src/image/image.entity';
 import { CreatePostDto } from './dto/create-post.dto';

@@ -1,4 +1,4 @@
-import { Post } from 'src/post/post.entity';
+import { Post } from 'src/post/entity/post.entity';
 import { VoteOption } from 'src/vote-option/vote-option.entity';
 import {
   BaseEntity,

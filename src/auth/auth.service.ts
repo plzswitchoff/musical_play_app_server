@@ -32,7 +32,7 @@ export class AuthService {
   ) {}
 
   async signup(authDto: AuthDto) {
-    const { email, password } = authDto;
+    const { email, password, nickname, phone } = authDto;
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
     const userCount = (await this.userRepository.count()) + 1;
@@ -40,7 +40,8 @@ export class AuthService {
       email,
       password: hashedPassword,
       loginType: 'email',
-      nickname: '익명' + userCount,
+      nickname,
+      phoneNumber: phone,
     });
 
     try {

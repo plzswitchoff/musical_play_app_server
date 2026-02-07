@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Post } from 'src/post/post.entity';
+import { Post } from 'src/post/entity/post.entity';
 import { User } from '../user/entity/user.entity';
 
 @Entity()

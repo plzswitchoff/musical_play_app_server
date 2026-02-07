@@ -1,4 +1,11 @@
-import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import {
+  IS_OPTIONAL,
+  IsOptional,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class AuthDto {
   @IsString()
@@ -15,4 +22,14 @@ export class AuthDto {
   password: string;
 
   expoPushToken?: string;
+
+  @IsString()
+  @MinLength(2)
+  @MaxLength(10)
+  @IsOptional()
+  nickname: string;
+
+  @IsString()
+  @IsOptional()
+  phone: string;
 }

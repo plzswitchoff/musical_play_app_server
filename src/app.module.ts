@@ -20,6 +20,7 @@ import { ShowModule } from './show/show.module';
 import { ActorModule } from './actor/actor.module';
 import { TransferModule } from './transfer/transfer.module';
 import { ChatModule } from './chat/chat.module';
+import { PostCategoriesModule } from './post-categories/post-categories.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { ChatModule } from './chat/chat.module';
     ActorModule,
     TransferModule,
     ChatModule,
+    PostCategoriesModule,
   ],
   providers: [ConfigService],
 })

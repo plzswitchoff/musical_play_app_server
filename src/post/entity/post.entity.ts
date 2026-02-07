@@ -15,7 +15,8 @@ import { Image } from 'src/image/image.entity';
 import { Comment } from 'src/comment/comment.entity';
 import { Vote } from 'src/vote/vote.entity';
 import { Like } from 'src/like/like.entity';
-import { User } from '../user/entity/user.entity';
+import { User } from '../../user/entity/user.entity';
+import { PostCategories } from '../../post-categories/entity/post-categories.entity';
 
 @Entity()
 export class Post extends BaseEntity {
@@ -31,6 +32,9 @@ export class Post extends BaseEntity {
   @Column({ default: 0 })
   viewCount: number;
 
+  @Column()
+  userId: number;
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -39,6 +43,8 @@ export class Post extends BaseEntity {
 
   @DeleteDateColumn()
   deletedAt: Date | null;
+
+  // relations
 
   @OneToMany(() => Image, (image) => image.post, { onDelete: 'CASCADE' })
   images: Image[];
@@ -58,6 +64,7 @@ export class Post extends BaseEntity {
   @ManyToOne(() => User, (user) => user.post)
   user: User;
 
-  @Column()
-  userId: number;
+  // relations
+  @ManyToOne(() => PostCategories, (categories) => categories.post)
+  categories: PostCategories;
 }

@@ -3,7 +3,7 @@ import { PostController } from './post.controller';
 import { PostService } from './post.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/auth/auth.module';
-import { Post } from './post.entity';
+import { Post } from './entity/post.entity';
 import { Image } from 'src/image/image.entity';
 import { Comment } from 'src/comment/comment.entity';
 import { Vote } from 'src/vote/vote.entity';

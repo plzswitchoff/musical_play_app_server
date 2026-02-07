@@ -6,7 +6,7 @@ import { CommentController } from './comment.controller';
 import { CommentService } from './comment.service';
 import { AuthService } from 'src/auth/auth.service';
 import { Comment } from './comment.entity';
-import { Post } from 'src/post/post.entity';
+import { Post } from 'src/post/entity/post.entity';
 import { NotificationService } from 'src/notification/notification.service';
 import { User } from '../user/entity/user.entity';
 

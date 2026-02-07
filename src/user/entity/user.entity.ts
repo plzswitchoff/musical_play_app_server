@@ -1,6 +1,6 @@
 import { Comment } from 'src/comment/comment.entity';
 import { Like } from 'src/like/like.entity';
-import { Post } from 'src/post/post.entity';
+import { Post } from 'src/post/entity/post.entity';
 import { UserVote } from 'src/user-vote/user-vote.entity';
 import {
   BaseEntity,
